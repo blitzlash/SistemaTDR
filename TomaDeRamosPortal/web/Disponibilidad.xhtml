@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            <p:panelGrid columns="6">
+                <p:dataTable var="lun"  value="#{disponibilidadMB.profesor.disponibilidad.lunes.bloques}">
+                    <p:column headerText="Lunes">
+                        <p:selectBooleanButton value="#{lun.disponible}" offLabel="No" onLabel="Si" />
+                    </p:column>
+                </p:dataTable>
+                <p:dataTable var="mar"  value="#{disponibilidadMB.profesor.disponibilidad.martes.bloques}">
+                    <p:column headerText="Martes">
+                        <p:selectBooleanButton value="#{mar.disponible}" offLabel="No" onLabel="Si" />
+                    </p:column>
+                </p:dataTable>
+                <p:dataTable var="mie" value="#{disponibilidadMB.profesor.disponibilidad.miercoles.bloques}" >
+                    <p:column headerText="Miercoles">
+                        <p:selectBooleanButton value="#{mie.disponible}" offLabel="No" onLabel="Si" />
+                    </p:column>
+                </p:dataTable>
+                <p:dataTable var="jue" value="#{disponibilidadMB.profesor.disponibilidad.jueves.bloques}" >
+                    <p:column headerText="Jueves">
+                        <p:selectBooleanButton value="#{jue.disponible}" offLabel="No" onLabel="Si" />
+                    </p:column>
+                </p:dataTable>
+                <p:dataTable var="vie" value="#{disponibilidadMB.profesor.disponibilidad.viernes.bloques}" >
+                    <p:column headerText="Viernes">
+                        <p:selectBooleanButton value="#{vie.disponible}" offLabel="No" onLabel="Si" />
+                    </p:column>
+                </p:dataTable>
+                <p:dataTable var="sab" value="#{disponibilidadMB.profesor.disponibilidad.sabado.bloques}" >
+                    <p:column headerText="Sabado">
+                        <p:selectBooleanButton value="#{sab.disponible}" offLabel="No" onLabel="Si" />
+                    </p:column>
+                </p:dataTable>
+                
+                <p:commandButton value="Guardar" action="#{disponibilidadMB.grabarDisponibilidad()}" />
+
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
