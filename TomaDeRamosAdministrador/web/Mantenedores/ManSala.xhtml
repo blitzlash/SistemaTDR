@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../plantillas/masterLayout.xhtml">            
+            <ui:define name="contenido">
+                <h:form>    
+                    <p:panel id="plnFormulario">
+                        <p:panelGrid columns="2" >
+                            <h:outputText value="id"/>
+                            <p:inputText value="#{salaMB.sala.id}" disabled="true" />
+
+                            <h:outputText  value="Nombre"/>
+                            <p:inputText value="#{salaMB.sala.nombre}" />
+
+                            <h:outputText value="Capacidad"/>
+                            <p:spinner min="1" max="100" value="#{salaMB.sala.capacidad}"/>
+
+                            <h:outputText value="Tipo Sala"/>
+
+                            <p:selectOneMenu value="#{salaMB.sala.tipoSala.id}" >
+                                <f:selectItem itemLabel="Seleccione" itemValue="" />
+                                <f:selectItems value="#{salaMB.tiposDeSala}" var="tipoDeSala"	
+                                               itemLabel="#{tipoDeSala.nombre}" itemValue="#{tipoDeSala.id}"/>
+                            </p:selectOneMenu>                                               
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:commandButton value="Guardar" actionListener="#{salaMB.onClickGuardarSala}"  ajax="pnlSalas,plnFormulario"/>
+                     <p:messages id="messages" autoUpdate="true" closable="true"/>  
+                    <p:panel id="pnlSalas">
+                        <p:dataTable  value="#{salaMB.salas}" var="sala" scrollable="true"   scrollHeight="170" 
+                                      >
+                        <p:column headerText="Id">
+                            #{sala.id}
+                        </p:column>
+                       <p:column headerText="Nombre">
+                            #{sala.nombre}
+                        </p:column>
+                        <p:column headerText="Capacidad">
+                            #{sala.capacidad}
+                        </p:column>
+                        <p:column headerText="Tipo de sala">
+                            #{sala.tipoSala.nombre}
+                        </p:column>
+                            <p:column headerText="Tipo de sala" style="visibility: hidden">
+                            #{sala.tipoSala.id}
+                        </p:column>
+                    </p:dataTable>
+                    </p:panel>             
+               </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

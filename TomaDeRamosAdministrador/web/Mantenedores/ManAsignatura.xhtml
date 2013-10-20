@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <ui:composition template="../plantillas/masterLayout.xhtml">            
+            <ui:define name="contenido">
+                <h:form>
+                <p:panelGrid columns="2">
+                    <p:panelGrid columns="2" style="width: 50%;">
+                        <h:outputLabel value="ID"></h:outputLabel>
+                        <p:inputText value="#{asignaturaMB.asignatura.id}"></p:inputText >
+                        <h:outputLabel value="Nombre"></h:outputLabel>
+                        <p:inputText value="#{asignaturaMB.asignatura.nombre}"></p:inputText>
+                        <h:outputLabel value="Codigo"></h:outputLabel>
+                        <p:inputText value="#{asignaturaMB.asignatura.codigo}"></p:inputText>
+                        <h:outputLabel value="Es de plan común"></h:outputLabel>
+                        <p:selectBooleanCheckbox value="#{asignaturaMB.asignatura.planComun}"/>
+                        <h:outputLabel value="Tiene Requisito"></h:outputLabel>
+                        <p:selectBooleanCheckbox  value="#{asignaturaMB.asignatura.tieneRequisitos}">
+                            <p:ajax update="pnlRequisitos" />
+                        </p:selectBooleanCheckbox>
+                        <h:outputLabel value="Bloques semanales"></h:outputLabel> 
+                        <p:spinner min="0" max="12"/>
+
+                        <p:commandButton value="Guardar" />
+                    </p:panelGrid>
+                    <p:panel id="pnlRequisitos" visible="#{asignaturaMB.asignatura.tieneRequisitos}">
+                    <p:panelGrid columns="2" >
+                        <h:outputLabel value="Buscar asignatura:" />
+                        <p:pickList value="#{asignaturaMB.asignaturasRequisitos}" var="req" 
+                                    itemValue="#{req}" itemLabel="#{req.nombre}"       
+                                    showSourceFilter="true" filterMatchMode="contains" >  
+
+                <f:facet name="sourceCaption">Disponibles</f:facet>  
+                <f:facet name="targetCaption">Son Requisitos</f:facet>  
+                            </p:pickList> 
+                        </p:panelGrid>
+                    </p:panel>
+
+                </p:panelGrid>
+                    <p:dataTable value="#{asignaturaMB.obtenerAsignaturas()}" var="asignatura" 
+                                 >
+                        <p:column headerText="Id">
+                            #{asignatura.id}
+                        </p:column>
+                        <p:column headerText="Codigo">
+                            #{asignatura.codigo}
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            #{asignatura.nombre}
+                        </p:column>
+                        <p:column headerText="PlanComun">
+                            #{asignatura.planComun}
+                        </p:column>
+                        <p:column headerText="Bloquessemanales">
+                            #{asignatura.bloquesSemanales}
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

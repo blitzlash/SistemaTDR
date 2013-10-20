@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body> 
+        <p:layout fullPage="true">  
+            <p:layoutUnit position="north" size="100" >
+                <ui:insert name="cabezera">
+                    Cebzera
+                </ui:insert>
+            </p:layoutUnit>
+            <p:layoutUnit position="west" collapsible="true" size="200" header="Menu">  
+                <ui:insert name="izquierda">
+                    <h:form>
+                        <p:panelMenu>
+                            <p:submenu label="Mantenedores">
+                                <p:menuitem value="Salas"       url="../Mantenedores/ManSala.xhtml"/>
+                                <p:menuitem value="Asignaturas" url="../Mantenedores/ManAsignatura.xhtml"/>
+                                <p:menuitem value="Carreras"    url="../Mantenedores/ManCarrera.xhtml"/>
+                                <p:menuitem value="Alumnos"     url="../Mantenedores/ManAlumno.xhtml"/>
+                                <p:menuitem value="Profesores"  url="../Mantenedores/ManProfesor.xhtml"/>
+                            </p:submenu>
+                            <p:submenu label="Procesos">
+
+                            </p:submenu>
+                             <p:submenu label="Configuraciones">
+
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
+                </ui:insert>
+            </p:layoutUnit>  
+            <p:layoutUnit position="center">  
+                <ui:insert name="contenido" >
+                    contenido
+                </ui:insert>                
+            </p:layoutUnit>  
+        </p:layout>       
+  
+    </h:body>
+</html>
